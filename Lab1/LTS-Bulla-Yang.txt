@@ -1,0 +1,27 @@
+/* Homework: LTS & FSP
+*
+*
+*
+* Name: Calvin
+* Surname: Bulla
+*
+* Name: Han
+* Surname: Yang
+*
+*/
+
+/* museum */
+
+const N = 5
+EAST = (arrive -> EAST).
+WEST = (leave -> WEST).
+DIRECTOR = (open -> close -> DIRECTOR).
+CONTROL = CLOSED[0],
+CLOSED[...] = ....
+|| MUSEUM = (EAST || WEST || DIRECTOR || CONTROL).
+
+/* Time-Out Client server */
+
+/* write your solution */
+
+/* end homework */
