@@ -1,24 +1,25 @@
 public class Account {
-	
-	int balance = 0;
+	// This account is unbounded
+	private int balance = 0;
 
-	public Account() {
-	}
-
-	public synchronized void deposit(int amount) throws InterruptedException {
-		//TODO +
+	public synchronized void deposit(int amount) {
+		// More money
 		balance += amount;
-		System.out.println("Deposit " + amount +" in account, now the balance is " + balance);
+		System.out.println("+ $" + amount + " (" + Thread.currentThread().getName() + ")");
 		notifyAll();
 	}
 
 	public synchronized void withdraw(int amount) throws InterruptedException {
-		//TODO -
-		if(amount > balance) {
-			System.out.println("No enough balance in account for withdraw " + amount);
-		} else {
-			balance -= amount;
-			System.out.println("Withdraw " + amount +" in account, now the balance is " + balance);			
+		// Only withdraw if enough money left
+		while (balance <= amount) {
+			System.out.println("Not enough money (" + Thread.currentThread().getName() + ")");
+			wait();
 		}
+		balance -= amount;
+		System.out.println("- $" + amount + " (" + Thread.currentThread().getName() + ")");
+	}
+
+	public synchronized int getBalance() {
+		return balance;
 	}
 }
